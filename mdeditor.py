@@ -209,7 +209,7 @@ class MarkdownEditor:
         self.root.title(t)
 
     def about_dialog(self):
-        messagebox.showinfo("About", "CommonMarkdown Editor\nversion 0.1, 2026-06-23",
+        messagebox.showinfo("About", "CommonMark Editor\nversion 0.1, 2026-06-23",
                             parent=self.root)
 
     # ── View / Zoom ─────────────────────────────────────────────
