@@ -56,6 +56,8 @@ class MarkdownEditor:
         vm = tk.Menu(mb, tearoff=0)
         vm.add_command(label="Zoom In", command=self.zoom_in, accelerator="Ctrl++")
         vm.add_command(label="Zoom Out", command=self.zoom_out, accelerator="Ctrl+-")
+        vm.add_separator()
+        vm.add_command(label="Refresh", command=self.refresh_preview, accelerator="Ctrl+E")
         mb.add_cascade(label="View", menu=vm)
 
         fmtm = tk.Menu(mb, tearoff=0)
@@ -178,6 +180,8 @@ class MarkdownEditor:
         self.root.bind("<Control-KP_Add>", lambda e: self.zoom_in())
         self.root.bind("<Control-minus>", lambda e: self.zoom_out())
         self.root.bind("<Control-KP_Subtract>", lambda e: self.zoom_out())
+        self.root.bind("<Control-e>", lambda e: self.refresh_preview())
+        self.root.bind("<Control-E>", lambda e: self.refresh_preview())
         self.root.protocol("WM_DELETE_WINDOW", self._on_close)
 
     # ── Window helpers ──────────────────────────────────────────
@@ -221,6 +225,9 @@ class MarkdownEditor:
     def zoom_out(self):
         self.font_size = max(self.font_size - 2, 6)
         self.text.config(font=("Mono", self.font_size))
+
+    def refresh_preview(self):
+        self._render_preview()
 
     # ── File operations ─────────────────────────────────────────
 
